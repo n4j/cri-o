@@ -26,6 +26,10 @@ annotation_prefix = "$prefix"
 cpushares =  $cpushares
 cpuset = "$cpuset"
 EOF
+
+# SAVE_DIR="/home/n4j/testdata/$(date -Ins)"
+# mkdir -p ${SAVE_DIR}
+# cp "$CRIO_CONFIG_DIR/01-workload.conf" "${SAVE_DIR}/"
 }
 
 function check_cpu_fields() {
@@ -94,6 +98,10 @@ function check_conmon_fields() {
 
 	jq --arg act "$activation" ' .annotations[$act] = "true"' \
 		"$TESTDATA"/container_sleep.json > "$ctrconfig"
+
+	echo "$activation" > /home/n4j/testdata/activation.cfg
+	cp   "$ctrconfig"    /home/n4j/testdata/ctrconfig.cfg
+	cp   "$sboxconfig"   /home/n4j/testdata/
 
 	ctr_id=$(crictl run "$ctrconfig" "$sboxconfig")
 

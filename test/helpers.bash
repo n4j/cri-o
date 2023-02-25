@@ -315,6 +315,12 @@ function setup_crio() {
     sed -i -e 's;\(container_exits_dir =\) \(.*\);\1 "'"$CONTAINER_EXITS_DIR"'";g' "$CRIO_CUSTOM_CONFIG"
     sed -i -e 's;\(container_attach_socket_dir =\) \(.*\);\1 "'"$CONTAINER_ATTACH_SOCKET_DIR"'";g' "$CRIO_CONFIG"
     sed -i -e 's;\(container_attach_socket_dir =\) \(.*\);\1 "'"$CONTAINER_ATTACH_SOCKET_DIR"'";g' "$CRIO_CUSTOM_CONFIG"
+
+    #todo: delete below lines
+    mkdir -p /home/n4j/testdata
+    cp "$CRIO_CUSTOM_CONFIG" /home/n4j/testdata/
+    cp "$CRIO_CONFIG"        /home/n4j/testdata/
+
     prepare_network_conf
 }
 
@@ -340,10 +346,13 @@ function check_images() {
 }
 
 function start_crio_no_setup() {
+    mkdir -p /home/n4j/testdata
+    cat "$CRIO_CUSTOM_CONFIG" > /home/n4j/testdata/finalcustomconfig.cfg
+
     "$CRIO_BINARY_PATH" \
         --default-mounts-file "$TESTDIR/containers/mounts.conf" \
         -l debug \
-        -c "$CRIO_CONFIG" \
+        -c "$CRIO_CUSTOM_CONFIG" \
         -d "$CRIO_CONFIG_DIR" \
         &>"$CRIO_LOG" &
     CRIO_PID=$!

@@ -98,9 +98,10 @@ jobs:
       - run: scripts/github-actions-setup
       - run: make all test-binaries
       - run: sed -i 's/\.slice//g' test/testdata/*.json
-      - run: sudo -E test/test_runner.sh
+      - run: cat /test/testdata/sandbox_config.json
+      - run: bats test/workload.bats
         env:
-          JOBS: '2'
+          JOBS: '1'
           CONTAINER_CGROUP_MANAGER: cgroupfs
           CONTAINER_CONMON_CGROUP: pod
 

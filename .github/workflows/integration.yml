@@ -99,7 +99,7 @@ jobs:
       - run: scripts/github-actions-setup
       - run: make all test-binaries
       - run: sed -i 's/\.slice//g' test/testdata/*.json
-      - run: cat /test/testdata/sandbox_config.json
+      - run: cat  test/testdata/sandbox_config.json
       - run: bats test/workload.bats
         env:
           JOBS: '1'

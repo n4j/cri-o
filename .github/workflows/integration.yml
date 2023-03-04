@@ -100,9 +100,9 @@ jobs:
       - run: make all test-binaries
       - run: sed -i 's/\.slice//g' test/testdata/*.json
       - run: cat  test/testdata/sandbox_config.json
-      - run: sudo bats test/workloads.bats -f "test workload gets configured to defaults"
+      - run: CONTAINER_CONMON_CGROUP=pod CONTAINER_CGROUP_MANAGER=cgroupfs sudo bats test/workloads.bats -f "test workload gets configured to defaults"
         env:
-          JOBS: '1'
+          JOBS: '2'
           CONTAINER_CGROUP_MANAGER: cgroupfs
           CONTAINER_CONMON_CGROUP: pod
 

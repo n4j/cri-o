@@ -100,7 +100,7 @@ jobs:
       - run: make all test-binaries
       - run: sed -i 's/\.slice//g' test/testdata/*.json
       - run: cat  test/testdata/sandbox_config.json
-      - run: bats test/workload.bats
+      - run: bats test/workloads.bats
         env:
           JOBS: '1'
           CONTAINER_CGROUP_MANAGER: cgroupfs

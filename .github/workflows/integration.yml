@@ -100,7 +100,8 @@ jobs:
       - run: make all test-binaries
       - run: sed -i 's/\.slice//g' test/testdata/*.json
       - run: cat  test/testdata/sandbox_config.json
-      - run: CONTAINER_CONMON_CGROUP=pod CONTAINER_CGROUP_MANAGER=cgroupfs sudo bats test/workloads.bats -f "test workload gets configured to defaults"
+      - run: CONTAINER_CONMON_CGROUP=pod CONTAINER_CGROUP_MANAGER=cgroupfs sudo bats test/workloads.bats -f "test workload can override defaults"
+      - run: CONTAINER_CONMON_CGROUP=pod CONTAINER_CGROUP_MANAGER=cgroupfs sudo bats test/workloads.bats -f "test workload should not be set if not defaulted or specified"
         env:
           JOBS: '2'
           CONTAINER_CGROUP_MANAGER: cgroupfs

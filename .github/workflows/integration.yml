@@ -99,10 +99,7 @@ jobs:
       - run: scripts/github-actions-setup
       - run: make all test-binaries
       - run: sed -i 's/\.slice//g' test/testdata/*.json
-      - run: cat  test/testdata/sandbox_config.json
-      - run: pwd
-      - run: sudo CONTAINER_CONMON_CGROUP=pod CONTAINER_CGROUP_MANAGER=cgroupfs bats test/workloads.bats -f "test workload can override defaults"
-      - run: sudo CONTAINER_CONMON_CGROUP=pod CONTAINER_CGROUP_MANAGER=cgroupfs bats test/workloads.bats -f "test workload should not be set if not defaulted or specified"
+      - run: sudo CONTAINER_CGROUP_MANAGER=cgroupfs CONTAINER_CONMON_CGROUP=pod JOBS=1 bats test/workloads.bats 
         env:
           JOBS: '2'
           CONTAINER_CGROUP_MANAGER: cgroupfs

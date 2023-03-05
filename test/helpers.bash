@@ -344,7 +344,7 @@ function start_crio_no_setup() {
     "$CRIO_BINARY_PATH" \
         --default-mounts-file "$TESTDIR/containers/mounts.conf" \
         -l debug \
-        -c "$CRIO_CUSTOM_CONFIG" \
+        -c "$CRIO_CONFIG" \
         -d "$CRIO_CONFIG_DIR" \
         &>"$CRIO_LOG" &
     CRIO_PID=$!

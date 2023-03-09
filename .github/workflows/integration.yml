@@ -99,7 +99,7 @@ jobs:
       - run: scripts/github-actions-setup
       - run: make all test-binaries
       - run: sed -i 's/\.slice//g' test/testdata/*.json
-      - run: sudo CONTAINER_CGROUP_MANAGER=cgroupfs CONTAINER_CONMON_CGROUP=pod JOBS=1 bats test/workloads.bats 
+      - run: sudo -E test/test_runner.sh 
         env:
           JOBS: '2'
           CONTAINER_CGROUP_MANAGER: cgroupfs

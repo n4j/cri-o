@@ -341,6 +341,7 @@ function check_images() {
 }
 
 function start_crio_no_setup() {
+    echo "Configured cgroup_manager $(cat ${CRIO_CONFIG}| grep cgroup_manager)"
     "$CRIO_BINARY_PATH" \
         --default-mounts-file "$TESTDIR/containers/mounts.conf" \
         -l debug \

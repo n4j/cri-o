@@ -99,7 +99,7 @@ jobs:
       - run: scripts/github-actions-setup
       - run: make all test-binaries
       - run: sed -i 's/\.slice//g' test/testdata/*.json
-      - run: sudo -E test/test_runner.sh 
+      - run: sudo -E bats test/workloads.bats
         env:
           JOBS: '2'
           CONTAINER_CGROUP_MANAGER: cgroupfs

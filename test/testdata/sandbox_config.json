@@ -32,7 +32,7 @@
 		"com.example.test": "sandbox annotation"
 	},
 	"linux": {
-		"cgroup_parent": "pod_123-456.slice",
+		"cgroup_parent": "pod_123-456",
 		"security_context": {
 			"namespace_options": {
 				"network": 0,

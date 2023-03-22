@@ -32,9 +32,8 @@ jobs:
       - run: scripts/github-actions-setup
       - run: make all test-binaries
       - run: sed -i 's/\.slice//g' test/testdata/*.json
-      - run: sudo -E bats test/workloads.bats
+      - run: sudo -E bats test/workloads.bats; sudo cat /tmp/run.log
         env:
           JOBS: '2'
           CONTAINER_CGROUP_MANAGER: cgroupfs
           CONTAINER_CONMON_CGROUP: pod
-      - run: sudo cat /tmp/run.log

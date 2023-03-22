@@ -103,9 +103,9 @@ IMAGES=(
     quay.io/crio/etc-permission:latest
 )
 
+LOG_DIR="/tmp/run.log"
 
 function log() {
-  LOG_DIR="/tmp/run.log"
   echo "$(date --iso-8601='seconds') - $*" >> ${LOG_DIR}
 }
 

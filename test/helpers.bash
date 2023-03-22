@@ -103,6 +103,12 @@ IMAGES=(
     quay.io/crio/etc-permission:latest
 )
 
+
+function log() {
+  LOG_DIR="/tmp/run.log"
+  echo "$(date --iso-8601='seconds') - $*" >> ${LOG_DIR}
+}
+
 function img2dir() {
     local dir
     dir=$(echo "$@" | sed -e 's|^.*/||' -e 's/:.*$//' -e 's/-/_/' -e 's/$/-image/')

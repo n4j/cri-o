@@ -53,6 +53,8 @@ function check_conmon_fields() {
 	local cpushares="$2"
 	local cpuset="$3"
 
+	log "check_conmon_fields: passed args - ctr_id=${ctr_id}, cpushares=${cpushares}, cpuset=${cpuset}"
+
 	if [[ "$CONTAINER_CGROUP_MANAGER" == "cgroupfs" ]]; then
 		if is_cgroup_v2; then
 			cpushare_path="/sys/fs/cgroup"
@@ -65,6 +67,7 @@ function check_conmon_fields() {
 		fi
 
 		found_cpushares=$(cat "$cpushare_path/pod_123-456/crio-conmon-$ctr_id/$cpushare_filename")
+		log "check_conmon_fields: expected cpushares=${cpushares}, found cpushares=${found_cpushares}"
 		if [ -z "$cpushares" ]; then
 			[[ $(cat "$cpushare_path/pod_123-456/$cpushare_filename") == *"$found_cpushares"* ]]
 		else

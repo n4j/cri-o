@@ -385,5 +385,6 @@ function check_conmon_fields() {
 }
 
 @test "Emit logs" {
-  sudo cat "${LOG_DIR}"
+   "$output"=`sudo cat "${LOG_DIR}"`
+   exit 1
 }

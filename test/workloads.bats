@@ -385,8 +385,3 @@ function check_conmon_fields() {
 	echo "Zombies: $zombies"
 	[[ $zombies == 0 ]]
 }
-
-@test "Emit logs" {
-   "$output"=`sudo cat "/tmp/run.log"`
-   exit 1
-}

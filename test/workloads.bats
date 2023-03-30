@@ -57,11 +57,13 @@ function check_conmon_fields() {
 
 	if [[ "$CONTAINER_CGROUP_MANAGER" == "cgroupfs" ]]; then
 		if is_cgroup_v2; then
+		  echo "cgroup version - v2"
 			cpushare_path="/sys/fs/cgroup"
 			cpushare_filename="cpu.weight"
 			# see https://github.com/containers/crun/blob/e5874864918f8f07acdff083f83a7a59da8abb72/crun.1.md#cpu-controller for conversion
 			cpushares=$((1 + ((cpushares - 2) * 9999) / 262142))
 		else
+		    echo "cgroup version - v1"
 			cpushare_path="/sys/fs/cgroup/cpu"
 			cpushare_filename="cpu.shares"
 		fi
